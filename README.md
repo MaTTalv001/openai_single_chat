@@ -46,9 +46,13 @@ puts response
 You can specify a different OpenAI model when initializing the client:
 
 ```
-client = OpenaiSingleChat::Client.new('gpt-4')
+client = OpenaiSingleChat::Client.new('gpt-4o')
 ```
 If no model is specified, it defaults to 'gpt-4o-mini'.
+```
+client = OpenaiSingleChat::Client.new
+# Uses 'gpt-4o-mini' as the default model
+```
 
 ## Rails Integration
 
