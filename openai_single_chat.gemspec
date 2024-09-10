@@ -5,18 +5,18 @@ Gem::Specification.new do |spec|
   spec.name = "openai_single_chat"
   spec.version = OpenaiSingleChat::VERSION
   spec.authors = ["MaTTalv001"]
-  spec.email = ["pomeranian1981@gmail.com"]
+  spec.email = ["littledarwin2021@gmail.com"]
 
-  spec.summary = "TODO: Write a short summary, because RubyGems requires one."
-  spec.description = "TODO: Write a longer description or delete this line."
-  spec.homepage = "TODO: Put your gem's website or public repo URL here."
+  spec.summary = %q{A simple gem to interact with OpenAI's chat API}
+  spec.description = %q{This gem provides an easy way to use OpenAI's chat API in Ruby on Rails applications}
+  spec.homepage = "https://github.com/MaTTalv001"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
   spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
+  spec.metadata["source_code_uri"] = "https://github.com/MaTTalv001/openai_single_chat"
   spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
 
   # Specify which files should be added to the gem when it is released.
@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
-  # spec.add_dependency "example-gem", "~> 1.0"
+  spec.add_dependency "httparty", "~> 0.18"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
