@@ -1,37 +1,84 @@
-# OpenaiSingleChat
+# OpenAI Single Chat
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/openai_single_chat`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+OpenAI Single Chat is a Ruby gem that provides a simple interface to interact with OpenAI's chat API. It allows you to easily integrate AI-powered chat functionality into your Ruby applications.
 
 ## Installation
 
-Install the gem and add to the application's Gemfile by executing:
+Add this line to your application's Gemfile:
 
-    $ bundle add openai_single_chat
+```ruby
+gem 'openai_single_chat'
+```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+And then execute:
 
-    $ gem install openai_single_chat
+```bash
+bundle install
+```
+
+## Configuration
+
+Set your OpenAI API key as an environment variable:
+```bash
+export OPENAI_API=your_openai_api_key_here
+```
+
+For Rails applications, you can use the dotenv gem and add your API key to a `.env` file:
+
+```
+OPENAI_API=your_openai_api_key_here
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+Here's a basic example of how to use the OpenAI Single Chat gem:
 
-## Development
+```ruby
+require 'openai_single_chat'
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+client = OpenaiSingleChat::Client.new
+response = client.chat("Hello, AI!")
+puts response
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+## Specifying a model
 
-## Contributing
+You can specify a different OpenAI model when initializing the client:
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/openai_single_chat. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/openai_single_chat/blob/master/CODE_OF_CONDUCT.md).
+```
+client = OpenaiSingleChat::Client.new('gpt-4')
+```
+If no model is specified, it defaults to 'gpt-4o-mini'.
 
+## Rails Integration
+
+To use OpenAI Single Chat in a Rails application:
+1. Add the gem to your Gemfile and run bundle install.
+2. Create a controller action:
+
+```ruby
+class ChatController < ApplicationController
+  def index
+    if params[:message]
+      client = OpenaiSingleChat::Client.new
+      @response = client.chat(params[:message])
+    end
+  end
+end
+```
+3. Create a view:
+```erb
+<h1>Chat with AI</h1>
+
+<%= form_with url: chat_index_path, method: :get, local: true do |f| %>
+  <%= f.text_field :message, placeholder: 'Enter your message' %>
+  <%= f.submit 'Send' %>
+<% end %>
+
+<% if @response %>
+  <h2>AI Response:</h2>
+  <p><%= @response %></p>
+<% end %>
+```
 ## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the OpenaiSingleChat project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/openai_single_chat/blob/master/CODE_OF_CONDUCT.md).
+The gem is available as open source under the terms of the MIT License.
